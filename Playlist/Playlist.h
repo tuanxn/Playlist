@@ -5,6 +5,8 @@
 // The semantics of prev_to_current is such that it always points to the
 // node *BEFORE* the cursor (current). This makes the manipulations easy because
 // we can only look forward (and not back) in singly linked lists.
+#ifndef Playlist_h
+#define Playlist_h
 #include <string>
 #include <sstream>
 using namespace std;
@@ -42,7 +44,7 @@ private:
 		Song_Entry _song;
 		Node* _next;
 	public:
-		Node(const Song_Entry& song = Song_Entry()) : _song(song), _next(nullptr) {}
+		Node(const Song_Entry& song = Song_Entry(), Node* next = nullptr) : _song(song), _next(next) {}
 		~Node(); // Do not do recursive free
 		Song_Entry& get_song() { return _song; }
 		Node* get_next() { return _next; }
@@ -74,3 +76,4 @@ public:
 	string to_string() const;
 	friend class Tests; // Don't remove this line
 };
+#endif
